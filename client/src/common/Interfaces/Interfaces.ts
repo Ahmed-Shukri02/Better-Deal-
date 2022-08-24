@@ -1,5 +1,12 @@
 import React, {ReactNode} from "react"
+// CONTEXTS
+export interface IMediaContext{
+  isMobile?: boolean | undefined,
+  isTablet?: boolean | undefined
+}
 
+
+//
 
 // BUTTONS
 
@@ -26,3 +33,4 @@ export interface IDefaultButtonStyle{
   backgroundColor?: string
 }
 
+//

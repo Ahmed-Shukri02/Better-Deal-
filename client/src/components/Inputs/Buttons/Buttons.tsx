@@ -1,5 +1,6 @@
 import React, { MouseEventHandler, ReactNode, useState } from "react";
 import { IButton, IDefaultButtonStyle } from "../../../common/Interfaces/Interfaces";
+import "./buttons.css"
 
 function DefaultButton({children, width = "auto", height = null, theme = "white", submit = false, fontColor = "lightslategray", fontSize = "1rem", styleOverride = "", handleClick = () => "", isLoading = false, testid = ""} : IButton){
   

@@ -1,16 +1,24 @@
-import React from 'react';
-import "./app.css"
-import Header from './components/sticky/Header/Header';
-import Buttons from './components/Inputs/Buttons/Buttons';
+import React, { useEffect } from "react";
+import Buttons from "./components/Inputs/Buttons/Buttons";
+import Home from "./components/Routes/Home/Home";
+import { mediaContext } from "./common/Contexts/mediaContext";
+import { useMediaQuery } from "react-responsive";
+import Header from "./components/sticky/Header/Header";
+import { GlobalStyle } from "./Global.styles";
 
 function App() {
+  const isMobile = useMediaQuery({ query: "(max-width: 650px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 950px)" });
+
   return (
-  <div className="App">
-    <Header/>
-    <Buttons.DefaultButton>
-      Hello
-    </Buttons.DefaultButton>
-  </div>
+    <mediaContext.Provider value={{ isMobile, isTablet }}>
+      <GlobalStyle />
+
+      <div className="App">
+        <Header />
+        <Home />
+      </div>
+    </mediaContext.Provider>
   );
 }
 
