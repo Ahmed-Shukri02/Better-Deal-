@@ -52,7 +52,10 @@ export default function Header() {
           <nav>
             <ul>
               <li>
-                <Buttons.DefaultButton styleOverride="transparent">
+                <Buttons.DefaultButton
+                  testid="home-button"
+                  styleOverride="transparent"
+                >
                   Home
                 </Buttons.DefaultButton>
               </li>
