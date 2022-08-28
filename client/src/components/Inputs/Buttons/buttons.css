@@ -43,6 +43,16 @@
   transition: background-color 0.1s ease-out;
 }
 
+.default-green {
+  border: none;
+  background-color: #118c4f;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5em;
+
+  transition: background-color 0.1s ease-out;
+}
+
 .default-white {
   border: none;
   background-color: white;
@@ -82,6 +92,11 @@
   .default-white:hover {
     cursor: pointer;
     background-color: lightgray !important;
+  }
+
+  .default-green:hover {
+    cursor: pointer;
+    background-color: #0e7542 !important;
   }
 
   .gray-button:hover {

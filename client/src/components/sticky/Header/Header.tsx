@@ -8,7 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import NavSidebar from "../Sidebars/NavSidebar";
 
 const HeaderStyle = styled.div`
-  border-bottom: 1px solid rgb(230, 230, 230);
+  //border-bottom: 1px solid rgb(230, 230, 230);
   position: sticky;
   top: 0;
 
@@ -79,7 +79,12 @@ export default function Header() {
             <FaBars />
           </Buttons.DefaultButton>
         )}
-        <div className="header-logo">Sign up</div>
+
+        <div style={{ padding: "0 2em" }}>
+          <Buttons.DefaultButton fontColor="white" theme="green">
+            Sign Up
+          </Buttons.DefaultButton>
+        </div>
       </div>
     </HeaderStyle>
   );
