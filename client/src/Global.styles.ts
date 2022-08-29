@@ -9,4 +9,8 @@ export const GlobalStyle = createGlobalStyle`
     /* background: url("Images/bg.jpg");
     background-size: contain; */
   }
+
+  .inline-icon{
+    width: 2em;
+  }
 `;

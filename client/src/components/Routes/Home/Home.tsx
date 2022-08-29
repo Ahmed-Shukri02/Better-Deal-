@@ -10,6 +10,8 @@ import { IMediaContext } from "../../../common/Interfaces/Interfaces";
 import { mediaContext } from "../../../common/Contexts/mediaContext";
 import { useMediaQuery } from "react-responsive";
 import IconComponents from "../../../common/icon-components";
+import { useRef } from "react";
+import useIsInViewport from "../../../common/Hooks/useIsInViewport";
 
 const HomeStyle = styled.div`
   min-height: 100vh;
@@ -17,8 +19,12 @@ const HomeStyle = styled.div`
   //background-color: lightsalmon;
 
   .full-container {
+  }
+
+  .inner-scroll {
     position: sticky;
     top: 86px;
+    padding-top: 300px;
   }
 
   .md-container {
@@ -33,6 +39,7 @@ const HomeStyle = styled.div`
   }
   .title svg {
     fill: lightslategray;
+    overflow: visible;
   }
 
   .title tspan {
@@ -54,6 +61,7 @@ const HomeStyle = styled.div`
 
   .wrapper {
     height: 200vh;
+    position: relative;
   }
 
   .more-prompt {
@@ -72,6 +80,10 @@ const HomeStyle = styled.div`
 
 export default function Home() {
   const hideImage = useMediaQuery({ query: "(max-width: 750px)" });
+  const intersectionRef =
+    useRef<HTMLDivElement>() as React.MutableRefObject<HTMLDivElement>;
+  const isInViewport: boolean = useIsInViewport(intersectionRef);
+  console.log(isInViewport);
 
   // COMPONENT
   function titleTextMobile() {
@@ -126,7 +138,7 @@ export default function Home() {
           PURCHASE
         </text>
         <text className="subtitle" x="10" y="500px">
-          When you use Better Deal
+          When you use <tspan>Better Deal</tspan>
         </text>
       </svg>
     );
@@ -134,22 +146,24 @@ export default function Home() {
 
   return (
     <HomeStyle>
-      <div className="wrapper">
-        <div className="full-container">
-          <div className="md-container">
-            <div className="title-left">
-              <div className="title">
-                {hideImage ? titleTextMobile() : titleText()}
-              </div>
+      <div className="full-container">
+        <div className="md-container">
+          <div className="title-left">
+            <div className="title">
+              {hideImage ? titleTextMobile() : titleText()}
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div className="more-prompt">
-              {!hideImage && <div>Scroll down to find out more</div>}
-              <IconComponents.ChevronDoubleIcon
-                color="lightslategray"
-                iconClass="double-chevron"
-              />
-            </div>
+      <div className="wrapper">
+        <div className="inner-scroll">
+          <div className="more-prompt">
+            {!hideImage && <div>Scroll down to find out more</div>}
+            <IconComponents.ChevronDoubleIcon
+              color="lightslategray"
+              iconClass="double-chevron"
+            />
           </div>
         </div>
       </div>
@@ -160,6 +174,7 @@ export default function Home() {
           marginTop: "-100vh",
           position: "relative",
         }}
+        ref={intersectionRef}
       >
         <div className="main-md-container"></div>
       </div>

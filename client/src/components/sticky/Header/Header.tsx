@@ -11,6 +11,7 @@ const HeaderStyle = styled.div`
   //border-bottom: 1px solid rgb(230, 230, 230);
   position: sticky;
   top: 0;
+  z-index: 1000;
 
   .header-container {
     width: 90%;
@@ -22,8 +23,13 @@ const HeaderStyle = styled.div`
     justify-content: space-between;
   }
 
+  .header-container > * {
+    flex-basis: 100%;
+  }
+
   .header-logo {
     padding: 2em;
+    text-align: center;
   }
 
   nav ul {
@@ -43,11 +49,13 @@ export default function Header() {
   return (
     <HeaderStyle>
       <AnimatePresence>
-        {navSidebarOpen && isTablet && <NavSidebar />}
+        {navSidebarOpen && isTablet && (
+          <NavSidebar setNavBar={setNavSidebarOpen} />
+        )}
       </AnimatePresence>
 
       <div className="header-container">
-        <div className="header-logo">Better Deal!</div>
+        <div className="header-logo">{isTablet ? "BD!" : "Better Deal!"}</div>
         {!isTablet ? (
           <nav>
             <ul>
@@ -80,7 +88,13 @@ export default function Header() {
           </Buttons.DefaultButton>
         )}
 
-        <div style={{ padding: "0 2em" }}>
+        <div
+          style={{
+            padding: "0px 2em",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Buttons.DefaultButton fontColor="white" theme="green">
             Sign Up
           </Buttons.DefaultButton>

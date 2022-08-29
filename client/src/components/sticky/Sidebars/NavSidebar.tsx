@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import IconComponents from "../../../common/icon-components";
 
 const NavSidebarStyle = styled.div`
   position: fixed;
@@ -10,9 +11,15 @@ const NavSidebarStyle = styled.div`
   width: 100%;
   height: 100%;
   background-color: #fff;
+  padding: 1em;
+  box-sizing: border-box;
+
+  .closeIcon {
+    width: 3em;
+  }
 `;
 
-export default function NavSidebar() {
+export default function NavSidebar({ setNavBar }: { setNavBar: Function }) {
   return (
     <NavSidebarStyle
       as={motion.div}
@@ -21,7 +28,15 @@ export default function NavSidebar() {
       exit={{ opacity: 0, top: "-100%" }}
       transition={{ duration: 0.2 }}
     >
-      This is a sidebar
+      <div
+        style={{ display: "flex", justifyContent: "flex-end" }}
+        onClick={() => setNavBar(false)}
+      >
+        <IconComponents.CloseIcon
+          color="lightslategray"
+          iconClass="closeIcon"
+        />
+      </div>
     </NavSidebarStyle>
   );
 }
